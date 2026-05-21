@@ -68,6 +68,7 @@ export const GENERATION_NAMES: Record<number, string> = {
   7: 'Generation VII',
   8: 'Generation VIII',
   9: 'Generation IX',
+  0: 'Gigantamax',
 };
 
 export const STAT_DISPLAY_NAMES: Record<string, string> = {

@@ -70,6 +70,11 @@ export function useFilteredPokemon() {
   const filteredList = useMemo<PokemonListItem[]>(() => {
     if (!allPokemon) return [];
 
+    // generation === 0 is the special Gigantamax filter
+    if (generation === 0) {
+      return allPokemon.filter((p) => p.name.endsWith('-gmax'));
+    }
+
     let list = allPokemon.filter((p) => {
       const id = extractIdFromUrl(p.url);
       return id >= 1 && id <= 1025;

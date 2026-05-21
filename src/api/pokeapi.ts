@@ -16,7 +16,8 @@ async function get<T>(url: string): Promise<T> {
 }
 
 export async function fetchAllPokemon(): Promise<PokemonListItem[]> {
-  const data = await get<{ results: PokemonListItem[] }>(`${BASE}/pokemon?limit=1025&offset=0`);
+  // 2000 covers all base Pokémon (1-1025) + alternate forms including Gigantamax
+  const data = await get<{ results: PokemonListItem[] }>(`${BASE}/pokemon?limit=2000&offset=0`);
   return data.results;
 }
 

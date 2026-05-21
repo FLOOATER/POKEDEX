@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useFilterStore } from '../../store';
-import { POKEMON_TYPES, TYPE_COLORS, GENERATION_NAMES } from '../../utils/constants';
+import { POKEMON_TYPES, TYPE_COLORS } from '../../utils/constants';
 import type { SortOption } from '../../types/pokemon';
 
 interface FilterPanelProps {
@@ -122,13 +122,11 @@ export default function FilterPanel({ isOpen, onClose }: FilterPanelProps) {
                   Generation
                 </h3>
                 <div className="grid grid-cols-3 gap-2">
-                  {Object.entries(GENERATION_NAMES).map(([gen, name]) => {
-                    const g = parseInt(gen);
+                  {[1,2,3,4,5,6,7,8,9].map((g) => {
                     const active = generation === g;
-                    const shortName = name.replace('Generation ', 'Gen ');
                     return (
                       <button
-                        key={gen}
+                        key={g}
                         onClick={() => setGeneration(active ? null : g)}
                         className={`px-2 py-2 rounded-lg text-xs font-semibold transition-all duration-150 ${
                           active
@@ -136,10 +134,24 @@ export default function FilterPanel({ isOpen, onClose }: FilterPanelProps) {
                             : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                         }`}
                       >
-                        {shortName}
+                        Gen {g}
                       </button>
                     );
                   })}
+                </div>
+
+                {/* Gigantamax / special forms */}
+                <div className="mt-2">
+                  <button
+                    onClick={() => setGeneration(generation === 0 ? null : 0)}
+                    className={`w-full px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 ${
+                      generation === 0
+                        ? 'bg-purple-500 text-white scale-105'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    ⚡ Gigantamax Forms
+                  </button>
                 </div>
               </section>
 
